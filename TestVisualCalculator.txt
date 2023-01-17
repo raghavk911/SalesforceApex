@@ -1,0 +1,123 @@
+@isTest
+public class TestCalculatorController {
+    
+    @isTest
+    public static void TestButton(){
+        CalculatorController cal=new CalculatorController();
+        cal.button0Clicked();
+        cal.button1Clicked();
+        cal.button2Clicked();
+        cal.button3Clicked();
+        cal.button4Clicked();
+        cal.button5Clicked();
+        cal.button6Clicked();
+        cal.button7Clicked();
+        cal.button8Clicked();
+        cal.button9Clicked();
+    }
+    
+    @isTest
+    public static void testAdd(){
+        
+        System.Test.startTest();
+        PageReference pageRef = Page.CalculatorApex;
+        pageRef.getParameters().put('operator','add');
+        
+        System.Test.setCurrentPage(pageRef);
+        
+        CalculatorController cal=new CalculatorController();
+        pageRef.getParameters().put('add','1');
+        String operator='add';
+        Integer Text1=1;
+        cal.add();
+        
+        System.Test.stopTest();
+        
+    }
+    
+    @isTest
+    public static void testSubstract(){
+        
+        System.Test.startTest();
+        PageReference pageRef = Page.CalculatorApex;
+        pageRef.getParameters().put('operator','sub');
+        
+        System.Test.setCurrentPage(pageRef);
+        
+        CalculatorController cal=new CalculatorController();
+        pageRef.getParameters().put('sub','1');
+        String operator='sub';
+        Integer Text1=1;
+        cal.subtract();
+        
+        System.Test.stopTest();
+        
+    }
+    
+    @isTest
+    public static void testDivide(){
+        
+        System.Test.startTest();
+        PageReference pageRef = Page.CalculatorApex;
+        pageRef.getParameters().put('operator','div');     
+        System.Test.setCurrentPage(pageRef);
+        
+        CalculatorController cal=new CalculatorController();
+        pageRef.getParameters().put('div','1');
+        String operator='div';
+        Integer Text1=1;
+        cal.divide();
+        
+        System.Test.stopTest();
+        
+    }
+
+    @isTest
+    public static void testMultiply(){
+        
+        System.Test.startTest();
+        PageReference pageRef = Page.CalculatorApex;
+        pageRef.getParameters().put('operator','mul');
+        
+        System.Test.setCurrentPage(pageRef);
+        
+        CalculatorController cal=new CalculatorController();
+        pageRef.getParameters().put('mul','1');
+        String operator='mul';
+        Integer Text1=1;
+        cal.multiply();
+        
+        System.Test.stopTest();
+        
+    }
+    
+    
+    @isTest
+    public static void testResult(){ 
+        
+        System.Test.startTest();
+        PageReference pageRef = Page.CalculatorApex; 
+        System.Test.setCurrentPage(pageRef);
+        
+        CalculatorController cal=new CalculatorController();
+        pageRef.getParameters().put('Text1','1');
+        String operator='Text1';
+        Integer Text1=1;
+        cal.getResult();
+        
+        System.Test.stopTest();
+        
+
+        /*PageReference myVfPage = Page.CalculatorApex;
+        Test.setCurrentPage(myVfPage);
+        
+        // Put Id into the current page Parameters
+        ApexPages.currentPage().getParameters().put('id',Opp.Id);
+        
+        ApexPages.StandardController sc = new ApexPages.StandardController(Opp);
+        AssociateECPController ac = new AssociateECPController(sc);
+        
+        String Text1 = ApexPages.currentPage().getParameters().get('Text1');
+        System.assert('true',Text1!=null);*/
+    }
+}
