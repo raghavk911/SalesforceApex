@@ -4,13 +4,15 @@
     <aura:attribute name="numberTwo" type="String"/>
     <aura:attribute name="buttonValue" type="String"/>
     <aura:attribute name="result" type="string"/>
-     <aura:attribute name="finalresult" type="integer"/>
+    <aura:attribute name="finalresult" type="integer"/>
     
-     <ui:outputText  value="{!v.result}" /><br/>
-      <ui:outputText  value="{!v.finalresult}" /><br/>
+    <ui:outputText  value="{!v.result}" /><br/>
+    <ui:outputText  value="{!v.finalresult}" /><br/>
     <ui:outputText  value="{!v.buttonValue}" /><br/>
     
     <aura:handler name="DisplayVaueEvent" event="c:ButtonDisplayValue" action="{!c.showValue}"/>
+    
+    <aura:registerEvent name="DisplayVaule" type="c:DisplayValue"/>
 
     <c:AuraCalculator label="7" />
     <c:AuraCalculator label="8"/>

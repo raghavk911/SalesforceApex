@@ -1,0 +1,4 @@
+<!-- DisplayValue.evt--> 
+<aura:event type="APPLICATION" >  
+    <aura:attribute name="messageDisplay" type="String"/>
+</aura:event>
