@@ -1,0 +1,16 @@
+public class StatementExample {
+    public void run(){
+          for (integer i = 0; i < 10; i++) {
+              if (i == 4) {
+                break;
+              }
+              System.debug(i);
+          }
+          for (integer i = 0; i < 10; i++) {
+              if (i == 4) {
+                continue;
+              }
+              System.debug(i);
+          }
+    }
+}
