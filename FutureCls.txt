@@ -1,0 +1,35 @@
+global class FutureClass {
+    
+    public static void createFamilyHead(){
+        //List<Contact>conList=List<Contact>();	Non-primtive datatype is not allowed
+        for(Integer i=0; i<1; i++){
+            Contact con= new Contact();
+            con.FirstName='FirstTest';
+            con.LastName='LastTest';
+            con.Is_Family_Head__c=False;
+            con.MailingCity='city';
+            con.MailingState='Maharashtra';
+            con.MailingCountry='India';
+           
+            insert con;
+        }
+    }
+    @future
+    public static void createUser(){//00e5g000005q8nAAAQ
+        User useobj=new User();
+
+        useobj.Username = 'FirstTest@test.com';
+        useobj.FirstName = 'First';
+        useobj.LastName = 'Last';
+        useobj.Alias = 'Alias';
+        useobj.Email = 'emailtest@test.com';
+        useobj.TimeZoneSidKey = 'America/New_York';
+        useobj.LocaleSidKey = 'en_US';
+        useobj.EmailEncodingKey = 'ISO-8859-1';
+        useobj.ProfileId = '00e5g000005q8nAAAQ';
+        useobj.LanguageLocaleKey = 'en_US'; 
+        insert useobj;
+    }
+    
+    
+}
