@@ -1,0 +1,45 @@
+public class HandlerCreateFamily {
+    public static void createfamily(List<Contact> conList){          
+        //	Generate Family from Family Head        
+        List<Account> accList = new List<Account>();  
+        List<String> accName = new List<String>();
+        for (Contact con : conList){           
+            if (con.Is_Family_Head__c==True){  
+                Account acc = new Account();  
+                acc.Name = con.LastName;
+                acc.Phone= con.MobilePhone;
+                acc.BillingCity=con.MailingCity;
+                acc.BillingState=con.MailingState;
+                acc.BillingCountry=con.MailingCountry;
+                accList.add(acc);  
+                accName.add(acc.Id);
+            }     
+        }   
+        insert accList;
+        
+        List<Contact>cont=[select Id, AccountId from Contact where AccountId In: accName];
+        List<Contact>conListUpdateFamNm=new List<Contact>();
+        
+        for(Contact con:cont){
+            for(Account acc:accList){
+                con.AccountId=acc.Id;
+                conListUpdateFamNm.add(con);
+            }               
+        }
+        update conListUpdateFamNm;
+    }
+    
+       public Static void checkBoxNotChecked(List<Contact> con ){
+        //Family member is being inserted populate family Name
+        List<Contact> conlist = new List<Contact>([Select Id, Name, is_family_head__c from Contact]);
+        for(Contact ct : con){
+            if(ct.is_family_head__c == False && ct.family_heads__c != Null && ct.AccountId == Null){
+                ct.is_family_head__c = False; 
+                ct.AccountId = ct.Family_Heads__r.LastName;   
+            }  
+            conlist.add(ct);
+        }
+        update conlist;
+
+    }
+}
