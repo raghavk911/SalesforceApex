@@ -1,10 +1,8 @@
-trigger ContactTrigger1 on Contact (before insert, after insert) {
+trigger ContactTriggerCheckedUnchecked on Contact (after insert, before insert) {
     if( Trigger.isInsert && Trigger.isAfter ){
-        VoterTriggerHandlerFlow.checkBoxChecked(Trigger.new);
+        HandlerCreateFamily.checkboxChecked(Trigger.new);
     }
-    if(Trigger.isInsert && Trigger.isBefore  ){
-        VoterTriggerHandlerFlow.checkBoxNotChecked(Trigger.new);
+     if(Trigger.isInsert && Trigger.isBefore  ){
+        HandlerCreateFamily.checkboxUnchecked(Trigger.new);
     }
-    
-    
 }
