@@ -1,35 +1,36 @@
 global class FutureClass {
-    
-    public static void createFamilyHead(){
-        //List<Contact>conList=List<Contact>();	Non-primtive datatype is not allowed
-        for(Integer i=0; i<1; i++){
-            Contact con= new Contact();
-            con.FirstName='FirstTest';
-            con.LastName='LastTest';
-            con.Is_Family_Head__c=False;
-            con.MailingCity='city';
-            con.MailingState='Maharashtra';
-            con.MailingCountry='India';
-           
-            insert con;
-        }
+
+  public static void createContact(){
+        
+        Contact con = new Contact();
+        con.FirstName = 'Raghav';
+        con.LastName = 'Kadam';
+        con.Is_Family_Head__c = true;
+        con.Email ='raghavendra.k@deciphercloud.com';
+        con.MailingCountry = 'India';
+        con.MailingState = 'Maharashtra';
+        
+        Insert con;
+        createUser(con.FirstName, con.LastName, con.Email );
+        system.debug(con);
     }
     @future
-    public static void createUser(){//00e5g000005q8nAAAQ
-        User useobj=new User();
-
-        useobj.Username = 'FirstTest@test.com';
-        useobj.FirstName = 'First';
-        useobj.LastName = 'Last';
+    public static void createUser(string FirstName, string LastName, string Email){
+        User useobj = new User();
+        useobj.FirstName = FirstName;
+        useobj.LastName = LastName;
         useobj.Alias = 'Alias';
-        useobj.Email = 'emailtest@test.com';
-        useobj.TimeZoneSidKey = 'America/New_York';
+        useobj.Email = Email;
+        useobj.IsActive =true;
+        useobj.ProfileId ='00e5g000005q8nAAAQ';
+        datetime dt = DateTime.now();
+        useobj.Username = Email;
+        useobj.TimeZoneSidKey = 'America/Los_Angeles';
         useobj.LocaleSidKey = 'en_US';
-        useobj.EmailEncodingKey = 'ISO-8859-1';
-        useobj.ProfileId = '00e5g000005q8nAAAQ';
+        useobj.EmailEncodingKey = 'UTF-8';
         useobj.LanguageLocaleKey = 'en_US'; 
+
         insert useobj;
-    }
-    
-    
+        system.debug(useobj);
+    }    
 }
