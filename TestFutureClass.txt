@@ -1,15 +1,21 @@
 @isTest
 public class TestFutureClass {
     @isTest
-	public static void testCreateFamilyHead(){
-        FutureClass.createFamilyHead();
+    static void createContactTest(){
+    Contact con = new Contact();
+        con.FirstName='Tests1';
+	con.LastName='testClass1';
+        con.Email='tests1@gmail.com';    
+        
+        con.Is_Family_Head__c=True;
+        con.MailingCity='Satara';
+        con.MailingState='Maharashtra';
+        con.MailingCountry='India';
+        con.MailingPostalCode='411030';
+        Insert con;
+        
+        FutureClass.createContact();
+        FutureClass.createUser(con.FirstName, con.LastName, con.Email) ;
     }
-    
-     @isTest
-	public static void testcreateUser(){
-        // Create User here   
-        FutureClass.createUser();
-    }
-    
     
 }
