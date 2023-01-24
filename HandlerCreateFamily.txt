@@ -1,5 +1,6 @@
 public class HandlerCreateFamily {
-    public static void createfamily(List<Contact> conList){          
+    
+    public static void checkboxChecked(List<Contact> conList){          
         //	Generate Family from Family Head        
         List<Account> accList = new List<Account>();  
         List<String> accName = new List<String>();
@@ -13,7 +14,8 @@ public class HandlerCreateFamily {
                 acc.BillingCountry=con.MailingCountry;
                 accList.add(acc);  
                 accName.add(acc.Id);
-            }     
+                
+            }         
         }   
         insert accList;
         
@@ -28,18 +30,22 @@ public class HandlerCreateFamily {
         }
         update conListUpdateFamNm;
     }
-    
-       public Static void checkBoxNotChecked(List<Contact> con ){
-        //Family member is being inserted populate family Name
-        List<Contact> conlist = new List<Contact>([Select Id, Name, is_family_head__c from Contact]);
-        for(Contact ct : con){
-            if(ct.is_family_head__c == False && ct.family_heads__c != Null && ct.AccountId == Null){
-                ct.is_family_head__c = False; 
-                ct.AccountId = ct.Family_Heads__r.LastName;   
-            }  
-            conlist.add(ct);
-        }
-        update conlist;
 
+    //checkbox unchecked method populate Family Name    
+    public Static void checkBoxUnChecked(List<Contact> conList ){
+        List<Account> accLIst = [Select Id, Name, BillingCity, BillingState, BillingCountry From Account];
+        for(Contact con : conList){
+            System.debug('I am in For Loop');
+            for(Account a : accList){
+                if(con.Is_Family_Head__c == False && con.AccountId == Null){
+                    System.debug('I am in if condition');
+                    if(con.LastName == a.Name && con.MailingCity== a.BillingCity && con.MailingState== a.BillingState && con.MailingCountry== a.BillingCountry){
+                        System.debug('I am in Nested if condition');
+                        con.AccountId = a.Id;                    
+                        System.debug('accountId'+con.AccountId);  
+                    }  
+                }         
+            }         
+        }    
     }
 }
